@@ -15,7 +15,7 @@ final class InMemoryFeedStore: FeedStore {
 	private var inMemoryCache: Cache?
 
 	func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-		inMemoryCache = nil
+		deleteCache()
 		completion(nil)
 	}
 
@@ -30,6 +30,12 @@ final class InMemoryFeedStore: FeedStore {
 		} else {
 			completion(.empty)
 		}
+	}
+
+	// MARK: - Helpers
+
+	private func deleteCache() {
+		inMemoryCache = nil
 	}
 }
 
